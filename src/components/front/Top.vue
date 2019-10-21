@@ -2,7 +2,7 @@
     <div class="top">
         <div class="top-div">
             <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect">
-                <el-menu-item index="1"> <router-link :to="{ name: 'Index'}"> 主页</router-link></el-menu-item>
+                <el-menu-item index="1"> <router-link :to="{ name: 'Index'}"> 主页1111</router-link></el-menu-item>
                  <el-menu-item style="float:right">   <el-button type="primary" @click="onSubmit">搜索</el-button></el-menu-item>
                  <el-menu-item style="float:right"> <el-input ></el-input> </el-menu-item>
             </el-menu>
