@@ -1,12 +1,9 @@
 language: node_js
-node_js:
-  - "node"
+node_js: "node"
 
 cache: npm
-install:
-  - npm install
-script:
-  - npm run build
+install: npm install
+script: npm run build
 
 # after_success:
 #   - cd ./dist
@@ -18,9 +15,9 @@ script:
 #   - git push origin master
 
 deploy:
-provider: pages
-skip_cleanup: true
-github_token: $GITHUB_TOKEN
-local_dir: dist
-on:
-  branch: master
+  provider: pages
+  skip_cleanup: true
+  github_token: $GITHUB_TOKEN
+  local_dir: dist
+  on:
+    branch: master
