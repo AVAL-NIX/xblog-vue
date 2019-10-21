@@ -3,8 +3,19 @@ node_js:
   - "node"
 
 cache: npm
+install:
+  - npm install
+script:
+  - npm run build
 
-script: npm run build
+# after_success:
+#   - cd ./dist
+#   - git init
+#   - git config --global user.name "${U_NAME}"
+#   - git config --global user.email "${U_EMAIL}"
+#   - git add .
+#   - git commit -m "Automatically update from travis-ci"
+#   - git push origin master
 
 deploy:
 provider: pages
