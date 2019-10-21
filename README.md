@@ -42,5 +42,3 @@ curl localhost:80
 # <!DOCTYPE html><html lang=en>...</html>
 ```
 
-正确
-
