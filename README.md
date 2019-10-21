@@ -27,7 +27,7 @@ docker build . -t xblog-vue
 运行xblog-vue镜像
 
 ```
-docker run -d -p 80:80 my-app
+docker run -d -p 443:443 xblog-vue
 ```
 
 检测是否运行
