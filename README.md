@@ -1,21 +1,46 @@
-# blog
+[TOC]
 
-> A Vue.js project
 
-## Build Setup
+与xblog后台对应的vue前端
 
-``` bash
-# install dependencies
+## 本地运行
+
+在根目录运行
+
+```
 npm install
-
-# serve with hot reload at localhost:8080
 npm run dev
-
-# build for production with minification
-npm run build
-
-# build for production and view the bundle analyzer report
-npm run build --report
 ```
 
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+## 服务器上运行
+
+前置条件
+
+- 安装dokcer
+
+构建xblog-vue镜像
+
+```
+docker build . -t xblog-vue
+```
+
+运行xblog-vue镜像
+
+```
+docker run -d -p 80:80 my-app
+```
+
+检测是否运行
+
+```
+curl localhost:80
+```
+
+输出
+
+```
+# <!DOCTYPE html><html lang=en>...</html>
+```
+
+正确
+
