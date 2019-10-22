@@ -20,14 +20,14 @@ before_install:
   - chmod 600 ./deploy_key
   - echo -e "Host $SERVER_IP_ADDRESS\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
   - ssh-add ./deploy_key
-  - ssh -i ./deploy_key root@$SERVER_IP_ADDRESS pwd
+  - ssh -i ./deploy_key root@$SERVER_IP_ADDRESS
 after_script:
-  - git config user.name "${U_NAME}"
-  - git config user.email "${U_EMAIL}"
-  - git add dist
-  - git commit -m "add dist"
-  - git push --force --quiet "https://${GITHUB_TOKEN2}@${GH_REF}" master:master
-  - ssh -i ./deploy_key root@$SERVER_IP_ADDRESS pwd 'cd /home/vue/xblog-vue  && git pull origin pages'
+  # - git config user.name "${U_NAME}"
+  # - git config user.email "${U_EMAIL}"
+  # - git add dist
+  # - git commit -m "add dist"
+  # - git push --force --quiet "https://${GITHUB_TOKEN2}@${GH_REF}" master:master
+  - ssh -i ./deploy_key root@$SERVER_IP_ADDRESS pwd 'cd /home/vue/xblog-vue  && git fetch --all  '
 # after_success:
 
 env:
