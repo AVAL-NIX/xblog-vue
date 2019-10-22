@@ -20,6 +20,6 @@ before_install:
 - chmod 600 ./deploy_key
 - echo -e "Host $SERVER_IP_ADDRESS\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
 - ssh-add ./deploy_key
-- ssh -i ./deploy_key root@$SERVER_IP_ADDRESS pwd
+- ssh -i ./deploy_key root@$SERVER_IP_ADDRESS pwd 'cd /home/vue/xblog-vue && git pull origin master'
 after_success:
 - ssh -i ./deploy_key root@$SERVER_IP_ADDRESS pwd 'cd /home/vue/xblog-vue && npm install && npm run build'
