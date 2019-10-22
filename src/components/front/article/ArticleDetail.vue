@@ -172,26 +172,26 @@
                 let result = '';
                 const addStartUL = () => {
                     result += '<ul style="    display: block;\
-        list-style-type: disc;\
-        margin-inline-start: 0px;\
-        margin-inline-end: 0px;\
-        padding-inline-start: 40px;">';
+                                list-style-type: disc;\
+                                margin-inline-start: 0px;\
+                                margin-inline-end: 0px;\
+                                padding-inline-start: 40px;">';
                 };
                 const addEndUL = () => {
                     result += '</ul>';
                 };
                 const addLI = (anchor, text) => {
                     let id = anchor.replace("#", "")
-                    result += `<li style="  padding-left: 5px;
-                            margin: 0;
-                            list-style-type: square;
-                            "><a style="   display: block;
-            padding: 3px 0;
-            color: #000;
-            text-decoration: none;
-            z-index: 2;  overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;" id='TOC${id}' class="title-hide" href=${anchor} ref=${anchor} @click="addClass('${anchor}')">${text}</a></li>`;
+                    result += `<li style="  padding-left: 5px;\
+                            margin: 0;\
+                            list-style-type: square;\
+                            "><a style="   display: block;\
+                            padding: 3px 5px 3px 0px;\
+                            color: #000;\
+                            text-decoration: none;\
+                            z-index: 2;  overflow: hidden;\
+                            text-overflow: ellipsis;\
+                            white-space: nowrap;" id='TOC${id}' class="title-hide" href=${anchor} ref=${anchor} @click="addClass('${anchor}')">${text}</a></li>`;
                 };
                 this.tocArr.forEach(function(item) {
                     let levelIndex = levelStack.indexOf(item.level);
