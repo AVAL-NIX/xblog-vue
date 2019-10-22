@@ -85,7 +85,7 @@ axios.interceptors.response.use(data => {
   return Promise.reject(err);
 })
 
-let base = ''
+let base = '/api'
 
 /**
  * POST 请求

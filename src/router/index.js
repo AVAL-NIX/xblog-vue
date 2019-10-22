@@ -12,7 +12,7 @@ export default new Router({
       component: Index
     },
     {
-        name:'ArticleIndex',
+      name:'ArticleIndex',
       path: '/article/:id',
       component: ArticleIndex
     }
