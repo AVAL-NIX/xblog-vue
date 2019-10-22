@@ -94,13 +94,13 @@
         transition: 0.5s;
     }
     .tjpic {
-        width: 100%;
+        width: 100%!important;
         height: 170px!important;
-        margin-bottom: 20px;
-        overflow: hidden;
-        display: block;
-        clear: both;
-        position: relative;
+        margin-bottom: 20px!important;
+        overflow: hidden!important;
+        display: block!important;
+        clear: both!important;
+        position: relative!important;
     }
     .tjpic a {
         bottom: 0px;
