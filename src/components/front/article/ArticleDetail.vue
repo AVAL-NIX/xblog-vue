@@ -72,7 +72,7 @@
                 smartLists: true,
                 smartypants: false
             });
-            this.$get('home/article/' + this.$route.params.id).then(res => {
+            this.$get('/home/article/' + this.$route.params.id).then(res => {
                 this.$resultCheck(res.data, true, true).then(res => {
                     this.item = res.data
                     //数据解析

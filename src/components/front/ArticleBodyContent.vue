@@ -57,7 +57,7 @@
                 this.getData()
             },
             getData() {
-                this.$get("home/article", {
+                this.$get("/home/article", {
                     page: this.page,
                     size: this.size
                 }).then(res => {

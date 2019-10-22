@@ -20,7 +20,7 @@
         name: 'ArticleUp',
         methods: {
             getData() {
-                this.$get("home/article/isUp").then(res => {
+                this.$get("/home/article/isUp").then(res => {
                     this.$resultCheck(res.data, true, true).then(res => {
                         this.list = res.data.records
                         this.total = res.data.total
