@@ -15,6 +15,10 @@ export default new Router({
       name:'ArticleIndex',
       path: '/article/:id',
       component: ArticleIndex
-    }
+    },
+    {
+        path:'*',
+        redirect: '/'
+    },
   ]
 })

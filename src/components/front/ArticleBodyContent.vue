@@ -83,7 +83,7 @@
     }
 </script>
 
-<style>
+<style scoped>
     .article-body {
         height: 88px;
         color: #566573;

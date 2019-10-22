@@ -1,11 +1,11 @@
 <template>
     <div>
-         <transition name="fade">
-        <Top v-show="topShow"></Top>
-          </transition>
         <transition name="fade">
-        <ArticleTop v-show="articleTopShow"></ArticleTop>
-         </transition>
+            <Top v-show="topShow"></Top>
+        </transition>
+        <transition name="fade">
+            <ArticleTop v-show="articleTopShow"></ArticleTop>
+        </transition>
         <el-container>
             <el-main>
                 <ArticleDetail></ArticleDetail>
@@ -44,11 +44,15 @@
     }
 </script>
 
-<style>
-.fade-enter-active, .fade-leave-active {
-  transition: opacity .5s;
-}
-.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
-  opacity: 0;
-}
+<style scoped>
+    .fade-enter-active,
+    .fade-leave-active {
+        transition: opacity .5s;
+    }
+    .fade-enter,
+    .fade-leave-to
+    /* .fade-leave-active below version 2.1.8 */
+    {
+        opacity: 0;
+    }
 </style>

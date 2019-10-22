@@ -1,35 +1,46 @@
 <template>
     <div class="">
         <el-card shadow="hover" class="about-me">
-            <el-avatar :size="122"  style="margin:50px 0px;"></el-avatar>
-         <div style="margin:10px;font-size:20px; margin-bottom:0px;">
+            <el-avatar :size="122" style="margin:50px 0px;"></el-avatar>
+            <div style="margin:10px;font-size:20px; margin-bottom:0px;">
                 Avalon | 郑新
             </div>
-   <!-- <div class="tag-group">
-                <el-tag type="" effect="dark">
-                    微信:slucky694948443
-                </el-tag>
-                   <el-tag type="danger" effect="dark">
-                    QQ:694948443
-                </el-tag>
-            </div> -->
+            <!-- <div class="tag-group">
+                    <el-tag type="" effect="dark">
+                        微信:slucky694948443
+                    </el-tag>
+                       <el-tag type="danger" effect="dark">
+                        QQ:694948443
+                    </el-tag>
+                </div> -->
             <el-card class="box-card" style="margin:10px">
-
-
-                <div class="text item">
+                <div class="text item" @click="setDrawer()">
                     书中自有颜如玉,书中自有黄金屋
                 </div>
             </el-card>
-
         </el-card>
     </div>
 </template>
 
 <script>
-    export default {}
+    import {
+        mapGetters,
+        mapState,
+        mapMutations
+    } from 'vuex'
+    export default {
+        methods: {
+            ...mapMutations({
+                changeDrawer: 'changeDrawer',
+            }),
+            setDrawer() {
+                this.changeDrawer()
+            }
+        }
+    }
 </script>
 
-<style>
+<style scoped>
     .about-me {
         text-align: center;
         margin: 5px 2px 5px;

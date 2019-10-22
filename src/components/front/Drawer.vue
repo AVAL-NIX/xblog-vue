@@ -1,8 +1,5 @@
 <template>
     <div>
-        <el-button @click="drawer = true" type="primary" style="margin-left: 16px;">
-            点我查看时间轴
-        </el-button>
         <el-drawer title="时光轴" :visible.sync="drawer" :direction="direction" :before-close="handleClose">
             <Timeline></Timeline>
         </el-drawer>
@@ -10,21 +7,34 @@
 </template>
 
 <script>
-import Timeline from '@/components/front/Timeline'
+    import Timeline from '@/components/front/Timeline'
+    import {
+        mapGetters,
+        mapState,
+        mapMutations
+    } from 'vuex'
     export default {
         name: 'Drawer',
         data() {
             return {
-                drawer: false,
                 direction: 'rtl',
             };
         },
+        computed: {
+            ...mapState({
+                drawer: state => state.home.drawer
+            })
+        },
         methods: {
+            ...mapMutations({
+                setDrawer: 'changeDrawer'
+            }),
             handleClose(done) {
-                 done();
+                this.setDrawer()
+                //  done();
             }
         },
-        components:{
+        components: {
             Timeline
         }
     }

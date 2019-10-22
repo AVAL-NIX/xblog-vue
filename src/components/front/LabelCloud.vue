@@ -16,7 +16,6 @@
             getData() {
                 this.$get("/home/article/labels").then(res => {
                     this.$resultCheck(res.data, true, true).then(res => {
-                        console.log("res",res)
                         this.list = res.data
                     }).catch(res => {})
                 })

@@ -35,7 +35,7 @@
     }
 </script>
 
-<style>
+<style scoped>
 .top{
     width: 100%;
     background: #fff;

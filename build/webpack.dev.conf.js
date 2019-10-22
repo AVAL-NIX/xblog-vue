@@ -57,11 +57,11 @@ const devWebpackConfig = merge(baseWebpackConfig, {
       template: 'index.html',
       inject: true
     }),
-    new webpack.optimize.CommonsChunkPlugin('common.js'),
-    new webpack.ProvidePlugin({
-        jQuery: "jquery",
-        $: "jquery"
-    }),
+    // new webpack.optimize.CommonsChunkPlugin('common.js'),
+    // new webpack.ProvidePlugin({
+    //     jQuery: "jquery",
+    //     $: "jquery"
+    // }),
     // copy custom static assets
     new CopyWebpackPlugin([
       {

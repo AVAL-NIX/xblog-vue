@@ -33,8 +33,6 @@
     }
 </script>
 
-<style>
-.index{
-
-}
+<style scoped>
+    .index {}
 </style>

@@ -3,6 +3,7 @@
         <el-row :gutter="0">
             <ArticleBodyContent></ArticleBodyContent>
             <ArticleBodyRight></ArticleBodyRight>
+            <Drawer></Drawer>
         </el-row>
     </div>
 </template>
@@ -21,7 +22,7 @@
     }
 </script>
 
-<style>
+<style scoped>
     .article-body {
         background-color: #FFF;
     }
