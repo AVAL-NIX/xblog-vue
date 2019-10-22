@@ -95,7 +95,7 @@
     }
     .tjpic {
         width: 100%;
-        height: 170px;
+        height: 170px!important;
         margin-bottom: 20px;
         overflow: hidden;
         display: block;
