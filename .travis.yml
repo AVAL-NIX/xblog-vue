@@ -22,11 +22,11 @@ after_script:
   # - git add dist
   # - git commit -m "add dist"
   # - git push --force --quiet "https://${GITHUB_TOKEN2}@${GH_REF}" master:master
-  - eval "$(ssh-agent -s)"
-  - chmod 600 ./deploy_key
-  - echo -e "Host $SERVER_IP_ADDRESS\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
-  - ssh-add ./deploy_key
-  - ssh -i ./deploy_key root@$SERVER_IP_ADDRESS 'cd /home/vue/xblog-vue &&  git pull --force origin master:gh-pages'
+  # - eval "$(ssh-agent -s)"
+  # - chmod 600 ./deploy_key
+  # - echo -e "Host $SERVER_IP_ADDRESS\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
+  # - ssh-add ./deploy_key
+  # - ssh -i ./deploy_key root@$SERVER_IP_ADDRESS 'cd /home/vue/xblog-vue &&  git pull --force origin master:gh-pages'
 # after_success:
 
 
