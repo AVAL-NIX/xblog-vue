@@ -26,7 +26,7 @@ after_script:
   - chmod 600 ./deploy_key
   - echo -e "Host $SERVER_IP_ADDRESS\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
   - ssh-add ./deploy_key
-  - ssh -i ./deploy_key root@$SERVER_IP_ADDRESS 'cd /home/vue/xblog-vue &&  git pull --force origin master:gh-pages'
+  - ssh -i ./deploy_key root@$SERVER_IP_ADDRESS 'cd /home/vue/xblog-vue &&  git pull --force origin gh-pages'
 # after_success:
 
 
