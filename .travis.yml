@@ -31,6 +31,8 @@ after_script:
   - ssh -i ./deploy_key root@$SERVER_IP_ADDRESS 'cd /home/vue/xblog-vue &&  git pull --force origin master:gh-pages'
 # after_success:
 
+
+
 env:
   global:
     - GH_REF=github.com:AVAL-NIX/xblog-vue.git
