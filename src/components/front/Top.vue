@@ -66,7 +66,9 @@
 
         },
         mounted() {
-            this.getTitles()
+            if(!this.titles){
+                this.getTitles()
+            }
         },
         computed: {
             ...mapState({

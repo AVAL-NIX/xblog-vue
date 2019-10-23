@@ -27,6 +27,7 @@ const state = {
         get('/home/article/titles').then(function(res){
             check(res.data, true).then(function(res) {
                 if(res.data){
+                    state.titles = []
                     res.data.map(item=>{
                         state.titles.push({
                              value: item
