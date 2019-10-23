@@ -30,7 +30,7 @@
     } from 'vuex'
     export default {
         methods: {
-            ...mapMutations({
+            ...mapMutations('home',{
                 changeDrawer: 'changeDrawer',
             }),
             setDrawer() {

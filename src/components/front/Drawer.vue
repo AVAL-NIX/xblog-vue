@@ -21,17 +21,16 @@
             };
         },
         computed: {
-            ...mapState({
-                drawer: state => state.home.drawer
+            ...mapState('home',{
+                drawer: "drawer"
             })
         },
         methods: {
-            ...mapMutations({
-                setDrawer: 'changeDrawer'
+            ...mapMutations('home',{
+                changeDrawer: 'changeDrawer'
             }),
             handleClose(done) {
-                this.setDrawer()
-                //  done();
+                this.changeDrawer()
             }
         },
         components: {

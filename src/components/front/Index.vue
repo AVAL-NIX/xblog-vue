@@ -29,6 +29,17 @@
             Drawer,
             ArticleCard,
             Top
+        },
+        metaInfo: {
+            title: 'Avalon博客',
+            meta: [{
+                name: 'java,python',
+                content: 'java,python代码'
+            }],
+            link: [{
+                rel: 'github',
+                href: 'https://github.com/AVAL-NIX'
+            }]
         }
     }
 </script>

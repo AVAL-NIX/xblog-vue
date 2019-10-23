@@ -26,4 +26,8 @@
     .article-body {
         background-color: #FFF;
     }
+     .about-me {
+        text-align: center;
+        margin: 5px 2px 5px;
+    }
 </style>

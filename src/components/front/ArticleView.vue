@@ -2,14 +2,18 @@
     <div class="article-up">
         <el-card shadow="hover" class="about-me">
             <h2 class="hometitle">最多收藏</h2>
-            <el-avatar class="tjpic" shape="square" >
-                <a style="bottom" href="">{{one.title}}</a>
-            </el-avatar>
-            <li v-for="i in list " :key="i.id">
-                <el-avatar :size="70" shape="square"  style="float:left; margin-right: 5px;">
+            <router-link :to="{ name: 'ArticleIndex', params: { id: one.id}}">
+                <el-avatar class="tjpic" shape="square">
+                    <a style="bottom" href="">{{one.title}}</a>
                 </el-avatar>
-                <div class="title">{{i.title}}</div>
-                <div class="title title2"> <i class="el-icon-time"></i> {{i.createDate}}</div>
+            </router-link>
+            <li v-for="i in list " :key="i.id">
+                <router-link :to="{ name: 'ArticleIndex', params: { id: i.id}}">
+                    <el-avatar :size="70" shape="square" style="float:left; margin-right: 5px;">
+                    </el-avatar>
+                    <div class="title">{{i.title}}</div>
+                    <div class="title title2"> <i class="el-icon-time"></i> {{i.createDate}}</div>
+                </router-link>
             </li>
         </el-card>
     </div>
@@ -18,10 +22,10 @@
 <script>
     export default {
         name: 'ArticleUp',
-         methods: {
+        methods: {
             getData() {
                 this.$get("/home/article/isView").then(res => {
-                    this.$resultCheck(res.data, true, true).then(res => {
+                    this.$check(res.data, true).then(res => {
                         this.list = res.data.records
                         this.total = res.data.total
                         this.one = this.list.shift()
@@ -44,6 +48,10 @@
 </script>
 
 <style scpoed>
+     a {
+        color: #000;
+        text-decoration: none;
+    }
     .article-up li {
         float: left;
         width: 100%;

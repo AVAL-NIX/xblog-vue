@@ -14,7 +14,7 @@
                     <el-card shadow="hover" style="margin:5px;position:fixed;width:16.6%;" :body-style="{ padding: '0px' }" id="article-toc" class="article-toc" ref="article-toc">
                         <div class="highlight-title" id="hightline-div" style=""></div>
                         <h1 style="    margin-block-start: 0.83em;
-                margin-block-end: 0.83em;cursor: initial;padding-left: 15px;background-color: #FFF;    font-weight: bold;    border: none;    padding: 8px 12px;    font-size: 16px;">目录</h1>
+                                    margin-block-end: 0.83em;cursor: initial;padding-left: 15px;background-color: #FFF;    font-weight: bold;    border: none;    padding: 8px 12px;    font-size: 16px;">目录</h1>
                         <div id="article-mulu" class="article-mulu">
                         </div>
                     </el-card>
@@ -29,10 +29,20 @@
     import {
         mapGetters,
         mapState,
-        mapMutations
+        mapMutations,
+        mapActions
     } from 'vuex'
     export default {
         name: 'ArticleDetail',
+        metaInfo() {
+            return {
+                title: this.title,
+                meta: [{
+                    name: this.item.labels,
+                    content: this.title
+                }],
+            }
+        },
         data: function() {
             return {
                 tocArr: [],
@@ -42,20 +52,22 @@
                 toc: '',
                 //内容的div高度
                 divHeights: [],
-                item: {},
                 //标记改变没
-                make: true
+                make: true,
+                item:{}
             }
         },
         computed: {
-            ...mapState({
-                topShow: state => state.article.top,
-                articleTopShow: state => state.article.articleTop,
-                title: state => state.article.title,
+            ...mapState('article', {
+                topShow: "top",
+                articleTopShow: "articleTop",
+                title: "title",
             })
         },
-        created: function() {},
-        mounted: function() {
+        created: function() {
+        },
+        mounted: async function() {
+            //设置markdown属性
             let renderer = new marked.Renderer();
             renderer.heading = (text, level, raw) => {
                 let anchor = this.addItem(text, level);
@@ -72,10 +84,9 @@
                 smartLists: true,
                 smartypants: false
             });
-            this.$get('/home/article/' + this.$route.params.id).then(res => {
-                this.$resultCheck(res.data, true, true).then(res => {
+               this.$get('/home/article/' + this.$route.params.id).then(res => {
+                this.$check(res.data, true).then(res => {
                     this.item = res.data
-                    //数据解析
                     this.execDataAnalyze()
                 }).catch(res => {})
             })
@@ -84,9 +95,13 @@
         },
         components: {},
         methods: {
-            ...mapMutations({
+            ...mapMutations('article', {
                 changeTop: 'changeTop',
-                setTitle: 'setTitle' //
+                setTitle: 'setTitle',
+                getArticle: 'getArticle'
+            }),
+            ...mapActions('article', {
+
             }),
             //数据分析
             execDataAnalyze() {
@@ -132,6 +147,7 @@
                 }
             },
             handleScroll() {
+                //监听高度变化
                 this.divHeights = []
                 for (let i = 0; i < this.tocDom.length; i++) {
                     this.divHeights.push($(this.tocDom[i]).offset().top);
@@ -140,6 +156,15 @@
                     window.pageYOffset ||
                     document.documentElement.scrollTop ||
                     document.body.scrollTop
+                for (let i = this.divHeights.length - 1; i >= 0; i--) {
+                    let heightAfter = this.divHeights[i] - 50;
+                    // console.log("scrollTop", scrollTop, " this.divHeights[i] ", this.divHeights[i], heightAfter, scrollTop > heightAfter)
+                    if (scrollTop > heightAfter) {
+                        // console.log("scrollTop", scrollTop, " this.divHeights[i] ", heightAfter, this.tocDom[i])
+                        this.changeClass(this.tocDom[i])
+                        break
+                    }
+                }
                 if (scrollTop > 100 && this.make) {
                     this.changeTop()
                     this.make = false
@@ -165,10 +190,10 @@
                 let result = '';
                 const addStartUL = () => {
                     result += '<ul style="    display: block;\
-                                        list-style-type: disc;\
-                                        margin-inline-start: 0px;\
-                                        margin-inline-end: 0px;\
-                                        padding-inline-start: 40px;">';
+                                                            list-style-type: disc;\
+                                                            margin-inline-start: 0px;\
+                                                            margin-inline-end: 0px;\
+                                                            padding-inline-start: 40px;">';
                 };
                 const addEndUL = () => {
                     result += '</ul>';
@@ -176,15 +201,15 @@
                 const addLI = (anchor, text) => {
                     let id = anchor.replace("#", "")
                     result += `<li style="  padding-left: 5px;\
-                                    margin: 0;\
-                                    list-style-type: square;\
-                                    "><a style="   display: block;\
-                                    padding: 3px 5px 3px 0px;\
-                                    color: #000;\
-                                    text-decoration: none;\
-                                    z-index: 2;  overflow: hidden;\
-                                    text-overflow: ellipsis;\
-                                    white-space: nowrap;" id='TOC${id}' class="title-hide"  ref=${anchor} @click="addClass('${anchor}')">${text}</a></li>`;
+                                                        margin: 0;\
+                                                        list-style-type: square;\
+                                                        "><a style="   display: block;\
+                                                        padding: 3px 5px 3px 0px;\
+                                                        color: #000;\
+                                                        text-decoration: none;\
+                                                        z-index: 2;  overflow: hidden;\
+                                                        text-overflow: ellipsis;\
+                                                        white-space: nowrap;" id='TOC${id}' class="title-hide"  ref=${anchor} @click="addClass('${anchor}')">${text}</a></li>`;
                 };
                 this.tocArr.forEach(function(item) {
                     let levelIndex = levelStack.indexOf(item.level);
@@ -216,30 +241,16 @@
         destroyed() {
             window.removeEventListener('scroll', this.handleScroll);
         },
-        //
         watch: {
-            //监听高度变化
-            divHeights() {
-                let scrollTop =
-                    window.pageYOffset ||
-                    document.documentElement.scrollTop ||
-                    document.body.scrollTop
-                for (let i = this.divHeights.length - 1; i >= 0; i--) {
-                    if (scrollTop > this.divHeights[i] - 50) {
-                        this.changeClass(this.tocDom[i])
-                        break
-                    }
-                }
-            },
-            //监听按钮时间
+            //监听list点击事件
             tocDom() {
                 this.tocDom.map(item => {
-                    document.querySelector("#TOC"+item.replace("#","")).onclick = function(){
+                    document.querySelector("#TOC" + item.replace("#", "")).onclick = function() {
                         document.querySelector(item).scrollIntoView(true);
                     }
                     // $("#TOC" + item.replace("#", "")).click(function() {
                     //     $("html, body").animate({
-                    //         scrollTop: $(item).offset().top
+                    //         scrollTop: $(item).offset().top + 20
                     //     }, {
                     //         duration: 100,
                     //         easing: "swing"
@@ -247,7 +258,9 @@
                     //     return false;
                     // });
                 })
-            }
+            },
+
+
         }
     }
 </script>

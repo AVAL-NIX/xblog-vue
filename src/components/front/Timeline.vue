@@ -4,6 +4,8 @@
             <el-timeline-item v-for="(activity, index) in activities" :key="index" :icon="activity.icon" :type="activity.type" :color="activity.color" :size="activity.size" :timestamp="activity.timestamp">
                 {{activity.content}}
             </el-timeline-item>
+            <el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="page" :page-size="size"    layout="prev, pager, next, jumper" :total="total">
+            </el-pagination>
         </el-timeline>
     </div>
 </template>
@@ -13,17 +15,32 @@
         data() {
             return {
                 activities: [],
-                data: ''
+                data: '',
+                page: 1,
+                size: 13,
+                total: 1,
             };
         },
         created() {
-            this.setData()
+            this.getData()
         },
         methods: {
-            setData() {
-                this.$get('/home/article/time').then(res => {
-                    this.$resultCheck(res.data, true, true).then(res => {
+            handleSizeChange(val) {
+                this.size = val
+                this.getData()
+            },
+            handleCurrentChange(val) {
+                this.page = val
+                this.getData()
+            },
+            getData() {
+                this.$get('/home/article/time',{
+                    page: this.page,
+                    size: this.size
+                }).then(res => {
+                    this.$check(res.data, true).then(res => {
                         this.data = res.data.records
+                        this.total = res.data.total
                         //数据解析
                         this.execDataAnalyze()
                     }).catch(res => {})
@@ -47,6 +64,7 @@
                 //   content: '默认样式的节点',
                 //   timestamp: '2018-04-03 20:46'
                 // }
+                this.activities = []
                 this.data.map(item => {
                     let obj = {
                         content: item.title,

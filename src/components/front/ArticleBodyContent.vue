@@ -45,39 +45,42 @@
 </template>
 
 <script>
+    import {
+        mapActions,
+        mapState
+    } from 'vuex'
     export default {
         name: 'ArtileBody',
         methods: {
             handleSizeChange(val) {
-                this.size = val
-                this.getData()
+                this.setSize(val)
+                this.getArticle()
+
             },
             handleCurrentChange(val) {
-                this.page = val
-                this.getData()
+                this.setPage(val)
+                this.getArticle()
             },
-            getData() {
-                this.$get("/home/article", {
-                    page: this.page,
-                    size: this.size
-                }).then(res => {
-                    this.$resultCheck(res.data, true, true).then(res => {
-                        this.list = res.data.records
-                        this.total = res.data.total
-                    }).catch(res => {})
-                })
-            }
+            ...mapActions('home',{
+                getArticle: "getArticle",
+                setPage:"setPage",
+                setSize:"setSize",
+            })
         },
         created() {
             //获取数据
-            this.getData()
+            this.getArticle()
+        },
+        computed: {
+            ...mapState('home',{
+                page: "page",
+                size: "size",
+                total: "total",
+                list: "articleList"
+            })
         },
         data() {
             return {
-                page: 1,
-                size: 10,
-                total:1,
-                list: []
             };
         },
     }
@@ -104,9 +107,9 @@
         color: #000;
         text-decoration: none;
     }
-    .title-hide{
+    .title-hide {
         overflow: hidden;
         text-overflow: ellipsis;
-        white-space:nowrap;
+        white-space: nowrap;
     }
 </style>

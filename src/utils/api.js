@@ -214,3 +214,30 @@ export const down = (url,params) =>{
         download(response)
     })
 }
+
+/**
+ * 检查服务器返回结果
+ *
+ * @param {*} res
+ * @param {*} isTrue
+ * @param {*} isError
+ */
+export const check = (res , isError = true ,  isTrue = false ) =>{
+    return  new Promise((resolve, reject) =>{
+        if(res.code < 0){
+            if(isError){
+                Message.error({
+                    message:res.msg
+                  });
+            }
+            resolve(res)
+        }else{
+            if(isTrue){
+                Message.success({
+                    message:res.msg
+                  });
+            }
+            resolve(res)
+        }
+    })
+}

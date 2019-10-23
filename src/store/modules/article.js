@@ -1,8 +1,11 @@
-// initial state
+//文章页面主要功能
+import {get , check} from '@/utils/api'
+
 const state = {
   top:true,
   articleTop:false,
-  title:''
+  title:'',
+  artileObj:{},
 }
 // getters
 const getters = {
@@ -24,6 +27,7 @@ const mutations = {
     }
 }
 export default {
+namespaced: true,
   state,
   getters,
   actions,

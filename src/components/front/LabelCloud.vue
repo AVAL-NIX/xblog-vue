@@ -3,31 +3,44 @@
         <el-card shadow="hover" class="about-me2">
             <h2 class="hometitle">标签云</h2>
             <ul>
-                <a href="" v-for="(i,index) in list" :key="index">{{i.name}}</a>
+                <a @click="selectLabel(i.name)" v-for="(i,index) in list" :key="index">{{i.name}}</a>
             </ul>
         </el-card>
     </div>
 </template>
 
 <script>
+    import {
+        mapActions,
+        mapState,
+        mapMutations
+    } from 'vuex';
     export default {
         name: 'LabelCloud',
         methods: {
-            getData() {
-                this.$get("/home/article/labels").then(res => {
-                    this.$resultCheck(res.data, true, true).then(res => {
-                        this.list = res.data
-                    }).catch(res => {})
-                })
+            ...mapActions('home', {
+                getLabels: 'getLabels',
+                getArticle: 'getArticle'
+            }),
+            ...mapMutations('home', {
+                changeLabels: 'changeLabels'
+            }),
+            selectLabel(name) {
+                this.changeLabels(name)
+                this.getArticle()
             }
         },
         created() {
             //获取数据
-            this.getData()
+            this.getLabels()
+        },
+        computed: {
+            ...mapState('home', {
+                list: 'labelsList'
+            })
         },
         data() {
             return {
-                list: []
             };
         },
     }
