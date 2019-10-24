@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div style="z-index:3">
         <el-col :span="5" hidden-sm-and-down>
                 <el-row :gutter="0">
                     <el-col :span="24">

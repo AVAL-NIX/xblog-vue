@@ -26,6 +26,7 @@
 <script>
     import marked from 'marked'
     import Vue from 'vue/dist/vue.js'
+
     import '@/assets/css/markdown.css';
     import {
         mapGetters,
@@ -93,7 +94,6 @@
             //启动监听
             window.addEventListener("scroll", this.handleScroll);
         },
-        components: {},
         methods: {
             ...mapMutations('article', {
                 changeTop: 'changeTop',

@@ -12,6 +12,7 @@
                 <Backtop></Backtop>
             </el-footer>
         </el-container>
+        <Special></Special>
     </div>
 </template>
 
@@ -21,6 +22,7 @@
     import Backtop from '@/components/front/Backtop'
     import Drawer from '@/components/front/Drawer'
     import ArticleCard from '@/components/front/ArticleCard'
+    import Special from '@/components/common/Special'
     export default {
         name: 'Index',
         components: {
@@ -28,7 +30,8 @@
             Backtop,
             Drawer,
             ArticleCard,
-            Top
+            Top,
+            Special
         },
         metaInfo: {
             title: 'Avalon博客',
