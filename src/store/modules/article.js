@@ -1,11 +1,14 @@
 //文章页面主要功能
-import {get , check} from '@/utils/api'
+import {
+  get,
+  check
+} from '@/utils/api'
 
 const state = {
-  top:true,
-  articleTop:false,
-  title:'',
-  artileObj:{},
+  top: true,
+  articleTop: false,
+  title: '',
+  artileObj: {},
 }
 // getters
 const getters = {
@@ -18,16 +21,16 @@ const actions = {
 }
 // mutations
 const mutations = {
-    changeTop (state) {
-        state.top = !state.top
-        state.articleTop = !state.articleTop
-    },
-    setTitle(state, title){
-        state.title = title
-    }
+  changeTop(state) {
+    state.top = !state.top
+    state.articleTop = !state.articleTop
+  },
+  setTitle(state, title) {
+    state.title = title
+  }
 }
 export default {
-namespaced: true,
+  namespaced: true,
   state,
   getters,
   actions,

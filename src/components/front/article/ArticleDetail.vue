@@ -55,7 +55,7 @@
                 divHeights: [],
                 //标记改变没
                 make: true,
-                item: {}
+                item: {},
             }
         },
         computed: {
@@ -119,7 +119,7 @@
                                 dom.parent("li").addClass("set_color")
                                 $("#hightline-div").css("display", "block")
                                 let top = dom.position().top;
-                                $("#hightline-div").css("top", top + 68)
+                                $("#hightline-div").css("top", top + 66.5)
                             }
                         },
                     }
@@ -134,12 +134,12 @@
                     this.changeClassByDom($("#TOC" + id))
                 }
             },
-            //dom = a 标签
+            //dom = TOC a 标签
             changeClassByDom(dom) {
                 if (dom) {
                     $("#hightline-div").css("display", "block")
                     let top = dom.position().top;
-                    $("#hightline-div").css("top", top + 68)
+                    $("#hightline-div").css("top", top + 66.5)
                     dom.parents("#article-mulu").find("li").removeClass("set_color")
                     dom.parent("li").addClass("set_color")
                 }
@@ -155,7 +155,7 @@
                     document.documentElement.scrollTop ||
                     document.body.scrollTop
                 for (let i = this.divHeights.length - 1; i >= 0; i--) {
-                    let heightAfter = this.divHeights[i] - 50;
+                    let heightAfter = this.divHeights[i] - 70;
                     // console.log("scrollTop", scrollTop, " this.divHeights[i] ", this.divHeights[i], heightAfter, scrollTop > heightAfter)
                     if (scrollTop > heightAfter) {
                         // console.log("scrollTop", scrollTop, " this.divHeights[i] ", heightAfter, this.tocDom[i])
@@ -243,18 +243,18 @@
             //监听list点击事件
             tocDom() {
                 this.tocDom.map(item => {
-                    document.querySelector("#TOC" + item.replace("#", "")).onclick = function() {
-                        document.querySelector(item).scrollIntoView(true);
-                    }
-                    // $("#TOC" + item.replace("#", "")).click(function() {
-                    //     $("html, body").animate({
-                    //         scrollTop: $(item).offset().top + 20
-                    //     }, {
-                    //         duration: 100,
-                    //         easing: "swing"
-                    //     });
-                    //     return false;
-                    // });
+                    // document.querySelector("#TOC" + item.replace("#", "")).onclick = function() {
+                    //     document.querySelector(item).scrollIntoView(true);
+                    // }
+                    $("#TOC" + item.replace("#", "")).click(function() {
+                        $("html, body").animate({
+                            scrollTop: $(item).offset().top - 60
+                        }, {
+                            duration: 0,
+                            easing: "swing"
+                        });
+                        return false;
+                    });
                 })
             },
         }
