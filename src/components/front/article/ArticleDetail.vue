@@ -3,7 +3,7 @@
         <el-col :span="10" :offset="5">
             <el-row :gutter="0">
                 <el-col :span="24">
-                    <el-card shadow="hover" v-html="content" style="margin:5px;padding:15px;">
+                    <el-card shadow="hover" v-html="content" style="margin:15px 5px 5px 5px;padding:15px;" class="markdown">
                     </el-card>
                 </el-col>
             </el-row>
@@ -11,10 +11,10 @@
         <el-col :span="4">
             <el-row :gutter="0">
                 <el-col :span="24">
-                    <el-card shadow="hover" style="margin:5px;position:fixed;width:16.6%;" :body-style="{ padding: '0px' }" id="article-toc" class="article-toc" ref="article-toc">
+                    <el-card shadow="hover" style="margin:15px 5px 5px 5px;position:fixed;width:16.6%;" :body-style="{ padding: '0px' }" id="article-toc" class="article-toc" ref="article-toc">
                         <div class="highlight-title" id="hightline-div" style=""></div>
                         <h1 style="    margin-block-start: 0.83em;
-                                    margin-block-end: 0.83em;cursor: initial;padding-left: 15px;background-color: #FFF;    font-weight: bold;    border: none;    padding: 8px 12px;    font-size: 16px;">目录</h1>
+                                margin-block-end: 0.83em;cursor: initial;padding-left: 15px;background-color: #FFF;    font-weight: bold;    border: none;    padding: 8px 12px;    font-size: 16px;">目录</h1>
                         <div id="article-mulu" class="article-mulu">
                         </div>
                     </el-card>
@@ -26,6 +26,7 @@
 <script>
     import marked from 'marked'
     import Vue from 'vue/dist/vue.js'
+    import '@/assets/css/markdown.css';
     import {
         mapGetters,
         mapState,
@@ -54,7 +55,7 @@
                 divHeights: [],
                 //标记改变没
                 make: true,
-                item:{}
+                item: {}
             }
         },
         computed: {
@@ -64,8 +65,7 @@
                 title: "title",
             })
         },
-        created: function() {
-        },
+        created: function() {},
         mounted: async function() {
             //设置markdown属性
             let renderer = new marked.Renderer();
@@ -84,7 +84,7 @@
                 smartLists: true,
                 smartypants: false
             });
-               this.$get('/home/article/' + this.$route.params.id).then(res => {
+            this.$get('/home/article/' + this.$route.params.id).then(res => {
                 this.$check(res.data, true).then(res => {
                     this.item = res.data
                     this.execDataAnalyze()
@@ -100,9 +100,7 @@
                 setTitle: 'setTitle',
                 getArticle: 'getArticle'
             }),
-            ...mapActions('article', {
-
-            }),
+            ...mapActions('article', {}),
             //数据分析
             execDataAnalyze() {
                 this.setTitle(this.item.title)
@@ -190,10 +188,10 @@
                 let result = '';
                 const addStartUL = () => {
                     result += '<ul style="    display: block;\
-                                                            list-style-type: disc;\
-                                                            margin-inline-start: 0px;\
-                                                            margin-inline-end: 0px;\
-                                                            padding-inline-start: 40px;">';
+                                list-style-type: disc;\
+                                margin-inline-start: 0px;\
+                                margin-inline-end: 0px;\
+                                padding-inline-start: 40px;">';
                 };
                 const addEndUL = () => {
                     result += '</ul>';
@@ -201,15 +199,15 @@
                 const addLI = (anchor, text) => {
                     let id = anchor.replace("#", "")
                     result += `<li style="  padding-left: 5px;\
-                                                        margin: 0;\
-                                                        list-style-type: square;\
-                                                        "><a style="   display: block;\
-                                                        padding: 3px 5px 3px 0px;\
-                                                        color: #000;\
-                                                        text-decoration: none;\
-                                                        z-index: 2;  overflow: hidden;\
-                                                        text-overflow: ellipsis;\
-                                                        white-space: nowrap;" id='TOC${id}' class="title-hide"  ref=${anchor} @click="addClass('${anchor}')">${text}</a></li>`;
+                                margin: 0;\
+                                list-style-type: square;\
+                                "><a style="   display: block;\
+                                padding: 3px 25px 3px 0px;\
+                                color: #000;\
+                                text-decoration: none;\
+                                z-index: 2;  overflow: hidden;\
+                                text-overflow: ellipsis;\
+                                white-space: nowrap;" id='TOC${id}' class="title-hide"  ref=${anchor} @click="addClass('${anchor}')">${text}</a></li>`;
                 };
                 this.tocArr.forEach(function(item) {
                     let levelIndex = levelStack.indexOf(item.level);
@@ -259,8 +257,6 @@
                     // });
                 })
             },
-
-
         }
     }
 </script>
@@ -303,16 +299,23 @@
         transition: all .2s ease;
         opacity: 1;
     }
-    .set_color a {
+
+    .title-hide {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+</style>
+
+<style>
+ .set_color a {
+        color: #409EFF!important;
+    }
+     .set_color li {
         color: #409EFF!important;
     }
     .set_color {
         color: #409EFF!important;
         transition: all .2s ease;
-    }
-    .title-hide {
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
     }
 </style>

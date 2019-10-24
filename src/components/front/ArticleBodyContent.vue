@@ -47,7 +47,8 @@
 <script>
     import {
         mapActions,
-        mapState
+        mapState,
+        mapMutations
     } from 'vuex'
     export default {
         name: 'ArtileBody',
@@ -63,7 +64,10 @@
             },
             ...mapActions('home',{
                 getArticle: "getArticle",
-                setPage:"setPage",
+
+            }),
+            ...mapMutations('home',{
+                 setPage:"setPage",
                 setSize:"setSize",
             })
         },
