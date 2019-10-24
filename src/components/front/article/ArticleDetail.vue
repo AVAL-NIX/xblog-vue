@@ -3,7 +3,7 @@
         <el-col :span="10" :offset="5">
             <el-row :gutter="0">
                 <el-col :span="24">
-                    <el-card shadow="hover" v-html="content" style="margin:15px 5px 5px 5px;padding:15px;" class="markdown">
+                    <el-card shadow="hover" v-html="content" style="margin:10px 5px 5px 5px;padding:15px;" class="markdown">
                     </el-card>
                 </el-col>
             </el-row>
@@ -11,7 +11,7 @@
         <el-col :span="4">
             <el-row :gutter="0">
                 <el-col :span="24">
-                    <el-card shadow="hover" style="margin:15px 5px 5px 5px;position:fixed;width:16.6%;" :body-style="{ padding: '0px' }" id="article-toc" class="article-toc" ref="article-toc">
+                    <el-card shadow="hover" style="margin:10px 5px 5px 5px;position:fixed;width:16.6%;" :body-style="{ padding: '0px' }" id="article-toc" class="article-toc" ref="article-toc">
                         <div class="highlight-title" id="hightline-div" style=""></div>
                         <h1 style="    margin-block-start: 0.83em;
                                 margin-block-end: 0.83em;cursor: initial;padding-left: 15px;background-color: #FFF;    font-weight: bold;    border: none;    padding: 8px 12px;    font-size: 16px;">目录</h1>
