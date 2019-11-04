@@ -308,7 +308,7 @@
 </style>
 
 <style>
- .set_color a {
+    .set_color a {
         color: #409EFF!important;
     }
      .set_color li {
