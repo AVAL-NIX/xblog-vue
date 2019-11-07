@@ -22,6 +22,8 @@ module.exports = {
     'element-ui': 'ELEMENT',
     'vuex': 'Vuex',
     'axios': 'axios',
+    // 'jquery': 'jquery',
+    'marked': 'marked',
  },
   output: {
     path: config.build.assetsRoot,
