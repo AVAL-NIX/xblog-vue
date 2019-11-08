@@ -1,12 +1,14 @@
 <template>
     <div>
-        <transition name="fade">
-            <Top v-show="topShow"></Top>
-        </transition>
-        <transition name="fade">
-            <ArticleTop v-show="articleTopShow"></ArticleTop>
-        </transition>
+        <!-- 区分移动-PC -->
+        <div v-if="!isMobile" >
         <el-container>
+            <transition name="fade">
+                <Top v-show="topShow"></Top>
+            </transition>
+            <transition name="fade">
+                <ArticleTop v-show="articleTopShow"></ArticleTop>
+            </transition>
             <el-main>
                 <ArticleDetail></ArticleDetail>
             </el-main>
@@ -14,12 +16,22 @@
                 <Backtop></Backtop>
             </el-footer>
         </el-container>
+        </div>
+        <div v-else>
+            <ArticleTop ></ArticleTop>
+            <el-container >
+                    <ArticleDetail></ArticleDetail>
+            </el-container>
+        </div>
+
+
     </div>
 </template>
 
 <script>
     import ArticleDetail from '@/components/front/article/ArticleDetail'
     import Top from '@/components/front/Top'
+    import TopMobile from '@/components/front/mobile/TopMobile'
     import ArticleTop from '@/components/front/article/ArticleTop'
     import Backtop from '@/components/front/Backtop'
     import {
@@ -33,12 +45,21 @@
             ArticleDetail,
             Top,
             Backtop,
+            TopMobile,
             ArticleTop
+        },
+        data(){
+            return{
+
+            }
         },
         computed: {
             ...mapState({
                 topShow: state => state.article.top,
                 articleTopShow: state => state.article.articleTop,
+            }),
+            ...mapState('home', {
+                isMobile: "isMobile",
             })
         },
     }

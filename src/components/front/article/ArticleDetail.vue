@@ -1,32 +1,46 @@
 <template>
-    <div class="article-detail">
-        <el-col :span="10" :offset="5">
-            <el-row :gutter="0">
-                <el-col :span="24">
-                    <el-card shadow="hover" v-html="content" style="margin:10px 5px 5px 5px;padding:15px;" class="markdown">
-                    </el-card>
-                </el-col>
-            </el-row>
-        </el-col>
-        <el-col :span="4">
-            <el-row :gutter="0">
-                <el-col :span="24">
-                    <el-card shadow="hover" style="margin:10px 5px 5px 5px;position:fixed;width:16.6%;" :body-style="{ padding: '0px' }" id="article-toc" class="article-toc" ref="article-toc">
-                        <div class="highlight-title" id="hightline-div" style=""></div>
-                        <h1 style="    margin-block-start: 0.83em;
-                                margin-block-end: 0.83em;cursor: initial;padding-left: 15px;background-color: #FFF;    font-weight: bold;    border: none;    padding: 8px 12px;    font-size: 16px;">目录</h1>
-                        <div id="article-mulu" class="article-mulu">
-                        </div>
-                    </el-card>
-                </el-col>
-            </el-row>
-        </el-col>
+    <div :class="[!isMobile ? 'article-detail' : 'article-detail-mobile']" >
+        <div v-if="!isMobile">
+            <el-col :span="10" :offset="5">
+                <el-row :gutter="0">
+                    <el-col :span="24">
+                        <el-card shadow="hover" v-html="content" style="margin:10px 5px 5px 5px;padding:15px;" class="markdown">
+                        </el-card>
+                    </el-col>
+                </el-row>
+            </el-col>
+            <el-col :span="4">
+                <el-row :gutter="0">
+                    <el-col :span="24">
+                        <el-card shadow="hover" style="margin:10px 5px 5px 5px;position:fixed;width:16.6%;" :body-style="{ padding: '0px' }" id="article-toc" class="article-toc" ref="article-toc">
+                            <div class="highlight-title" id="hightline-div" style=""></div>
+                            <h1 style=" margin-block-start: 0.83em;
+                                        margin-block-end: 0.83em;cursor: initial;padding-left: 15px;background-color: #FFF;    font-weight: bold;    border: none;    padding: 8px 12px;    font-size: 16px;">目录</h1>
+                            <div id="article-mulu" class="article-mulu">
+                            </div>
+                        </el-card>
+                    </el-col>
+                </el-row>
+            </el-col>
+        </div>
+        <div v-else>
+            <el-col :span="24">
+                <el-card shadow="hover" v-html="content" style="margin:0px;padding:1rem;padding-top:0px;" class="markdown">
+                </el-card>
+                <el-card v-show="false" shadow="hover" style="margin:10px 5px 5px 5px;position:fixed;width:16.6%;" :body-style="{ padding: '0px' }" id="article-toc" class="article-toc" ref="article-toc">
+                    <div class="highlight-title" id="hightline-div" style=""></div>
+                    <h1 style=" margin-block-start: 0.83em;
+                                    margin-block-end: 0.83em;cursor: initial;padding-left: 15px;background-color: #FFF;    font-weight: bold;    border: none;    padding: 8px 12px;    font-size: 16px;">目录</h1>
+                    <div id="article-mulu" class="article-mulu">
+                    </div>
+                </el-card>
+            </el-col>
+        </div>
     </div>
 </template>
 <script>
     import marked from 'marked'
     import Vue from 'vue/dist/vue.js'
-
     import '@/assets/css/markdown.css';
     import {
         mapGetters,
@@ -42,7 +56,7 @@
                 meta: [{
                     name: this.item.labels,
                     content: this.title
-                }],
+                }]
             }
         },
         data: function() {
@@ -64,10 +78,13 @@
                 topShow: "top",
                 articleTopShow: "articleTop",
                 title: "title",
+            }),
+             ...mapState('home', {
+                isMobile: "isMobile",
             })
         },
         created: function() {},
-        mounted: async function() {
+        mounted: function() {
             //设置markdown属性
             let renderer = new marked.Renderer();
             renderer.heading = (text, level, raw) => {
@@ -188,10 +205,10 @@
                 let result = '';
                 const addStartUL = () => {
                     result += '<ul style="    display: block;\
-                                list-style-type: disc;\
-                                margin-inline-start: 0px;\
-                                margin-inline-end: 0px;\
-                                padding-inline-start: 40px;">';
+                                        list-style-type: disc;\
+                                        margin-inline-start: 0px;\
+                                        margin-inline-end: 0px;\
+                                        padding-inline-start: 40px;">';
                 };
                 const addEndUL = () => {
                     result += '</ul>';
@@ -199,15 +216,15 @@
                 const addLI = (anchor, text) => {
                     let id = anchor.replace("#", "")
                     result += `<li style="  padding-left: 5px;\
-                                margin: 0;\
-                                list-style-type: square;\
-                                "><a style="   display: block;\
-                                padding: 3px 25px 3px 0px;\
-                                color: #000;\
-                                text-decoration: none;\
-                                z-index: 2;  overflow: hidden;\
-                                text-overflow: ellipsis;\
-                                white-space: nowrap;" id='TOC${id}' class="title-hide"  ref=${anchor} @click="addClass('${anchor}')">${text}</a></li>`;
+                                        margin: 0;\
+                                        list-style-type: square;\
+                                        "><a style="   display: block;\
+                                        padding: 3px 25px 3px 0px;\
+                                        color: #000;\
+                                        text-decoration: none;\
+                                        z-index: 2;  overflow: hidden;\
+                                        text-overflow: ellipsis;\
+                                        white-space: nowrap;" id='TOC${id}' class="title-hide"  ref=${anchor} @click="addClass('${anchor}')">${text}</a></li>`;
                 };
                 this.tocArr.forEach(function(item) {
                     let levelIndex = levelStack.indexOf(item.level);
@@ -267,6 +284,10 @@
         width: 100%;
         margin-top: 35px;
     }
+    .article-detail-mobile {
+        height: 100vh;
+        width: 100%;
+    }
     #article-mulu {
         position: relative;
         z-index: 2;
@@ -299,7 +320,6 @@
         transition: all .2s ease;
         opacity: 1;
     }
-
     .title-hide {
         overflow: hidden;
         text-overflow: ellipsis;
@@ -311,7 +331,7 @@
     .set_color a {
         color: #409EFF!important;
     }
-     .set_color li {
+    .set_color li {
         color: #409EFF!important;
     }
     .set_color {

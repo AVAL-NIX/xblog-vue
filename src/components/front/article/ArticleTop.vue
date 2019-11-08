@@ -49,7 +49,7 @@
     float: left;
 }
 .top-div{
-    width: 60%;
+    width: 100%;
     margin:auto;
 }
 </style>

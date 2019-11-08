@@ -39,9 +39,10 @@
             }),
             handleSelect(key, keyPath) {
                 if (key == 1) {
-                    this.$router.push("/").catch(err => {
-                        console.log(err)
-                    })
+                    this.$router.push("/")
+                    // .catch(err => {
+                    //     console.log(err)
+                    // })
                 }
             },
             onSubmit() {

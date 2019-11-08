@@ -15,7 +15,9 @@ const state = {
     articleList: [],
     total:0,
     //标签云
-    labelsList:[]
+    labelsList:[],
+    //是否是移动端
+    isMobile:false
   }
   // getters
   const getters = {
