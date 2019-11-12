@@ -32,13 +32,7 @@ Vue.prototype.$put = put
 Vue.prototype.$upload = upload
 Vue.prototype.$down = down
 Vue.prototype.$check = check
-//hash
-// window.addEventListener('hashchange',()=>{
-//     var currentPath = window.location.hash.slice(1); // 获取输入的路由
-//     if(this.$router.path !== currentPath){
-//         this.$router.push(currentPath); // 动态跳转
-//     }
-// },false);
+
 
 new Vue({
   el: '#app',
@@ -46,6 +40,9 @@ new Vue({
   store,
   components: {
     App
+  },
+  mounted () {
+    document.dispatchEvent(new Event('render-event'))
   },
   template: '<App/>'
 })
