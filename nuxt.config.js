@@ -97,8 +97,8 @@ module.exports = {
     proxy: true
   },
   server: {
-    port: 3000,
-    host: 'localhost'
+    port: 8080,
+    host: '127.0.0.1'
   },
   proxy: [
     ['/api', {

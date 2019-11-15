@@ -36,7 +36,11 @@ const state = {
                          })
                     })
                 }
+            }).catch(res=>{
+
             })
+        }).catch(res=>{
+
         })
       },
       getArticle({state}){
@@ -49,7 +53,10 @@ const state = {
             check(res.data, true).then(res => {
                 state.articleList = res.data.records
                 state.total = res.data.total
+            }).catch(res=>{
             })
+        }).catch(res=>{
+
         })
       },
       getLabels({state}){
@@ -57,6 +64,8 @@ const state = {
             check(res.data, true).then(res => {
                 state.labelsList = res.data
             }).catch(res => {})
+        }).catch(res=>{
+
         })
       }
 
