@@ -1,0 +1,27 @@
+language: node_js
+node_js:
+  - node
+cache:
+  directories:
+    - node_modules
+install:
+  - npm install
+script:
+  - npm run build
+deploy:
+  provider: pages
+  skip_cleanup: true
+  github_token: $GITHUB_TOKEN
+  local_dir: dist
+before_install:
+  - openssl aes-256-cbc -K $encrypted_19c402d84138_key -iv $encrypted_19c402d84138_iv
+    -in deploy_key.enc -out ./deploy_key -d
+after_script:
+  - eval "$(ssh-agent -s)"
+  - chmod 600 ./deploy_key
+  - echo -e "Host $SERVER_IP_ADDRESS\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
+  - ssh-add ./deploy_key
+  - ssh -i ./deploy_key root@$SERVER_IP_ADDRESS 'cd /home/vue/xblog-vue &&  git fetch --all  &&  git reset --hard origin/gh-pages'
+env:
+  global:
+    - GH_REF=github.com:AVAL-NIX/xblog-vue.git
