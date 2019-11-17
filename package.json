@@ -11,13 +11,12 @@
     "generate": "nuxt generate"
   },
   "dependencies": {
-    "axios": "^0.19.0",
     "cross-env": "^5.2.0",
     "element-ui": "^2.4.11",
     "express": "^4.16.4",
+    "jquery": "^3.4.1",
     "marked": "^0.7.0",
-    "nuxt": "^2.0.0",
-    "jquery": "^3.4.1"
+    "nuxt": "^2.0.0"
   },
   "devDependencies": {
     "@nuxtjs/axios": "^5.8.0",

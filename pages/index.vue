@@ -17,7 +17,12 @@
         mapState,
         mapMutations
     } from 'vuex'
+    import axios from 'axios'
     export default {
+        async asyncData ({ store, params }) {
+            await store.dispatch('home/getArticle')
+            await store.dispatch('timeline/getTimeLine')
+        },
         layout: 'blog',
         name: 'Index',
         data(){

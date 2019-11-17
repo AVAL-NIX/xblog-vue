@@ -38,6 +38,9 @@
     } from 'vuex'
     export default {
         name: 'ArticleIndex',
+        async asyncData ({ store, params }) {
+            await store.dispatch('article/getArticle', params.id)
+        },
         components: {
             ArticleDetail,
             Top,
@@ -47,7 +50,6 @@
         },
         data(){
             return{
-
             }
         },
         computed: {

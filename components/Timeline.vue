@@ -11,40 +11,37 @@
 </template>
 
 <script>
+import { mapState, mapActions } from 'vuex';
     export default {
         data() {
             return {
                 activities: [],
-                data: '',
-                page: 1,
-                size: 13,
-                total: 1,
             };
         },
-        mounted() {
-            this.getData()
+        computed:{
+            ...mapState('timeline',{
+                data: 'data',
+                page: 'page',
+                size: 'size',
+                total: 'total',
+            })
+        },
+        mounted(){
+            this.execDataAnalyze()
         },
         methods: {
+            ...mapActions('timeline',{
+                getTimeLine:'getTimeLine'
+            }),
             handleSizeChange(val) {
-                this.size = val
-                this.getData()
+                this.$store.state.timeline.size = val
+                this.getTimeLine()
+                this.execDataAnalyze()
             },
             handleCurrentChange(val) {
-                this.page = val
-                this.getData()
-            },
-            getData() {
-                this.$get('/home/article/time',{
-                    page: this.page,
-                    size: this.size
-                }).then(res => {
-                    this.$check(res.data, true).then(res => {
-                        this.data = res.data.records
-                        this.total = res.data.total
-                        //数据解析
-                        this.execDataAnalyze()
-                    }).catch(res => {})
-                })
+                this.$store.state.timeline.page = val
+                this.getTimeLine()
+                this.execDataAnalyze()
             },
             execDataAnalyze() {
                 //   content: '支持使用图标',

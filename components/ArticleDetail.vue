@@ -50,15 +50,15 @@
     } from 'vuex'
     export default {
         name: 'ArticleDetail',
-        metaInfo() {
-            return {
-                title: this.title,
-                meta: [{
-                    name: this.item.labels,
-                    content: this.title
-                }]
-            }
-        },
+        // metaInfo() {
+        //     return {
+        //         title: this.title,
+        //         meta: [{
+        //             name: this.article.labels,
+        //             content: this.title
+        //         }]
+        //     }
+        // },
         data: function() {
             return {
                 tocArr: [],
@@ -70,7 +70,6 @@
                 divHeights: [],
                 //标记改变没
                 make: true,
-                item: {},
             }
         },
         computed: {
@@ -78,12 +77,12 @@
                 topShow: "top",
                 articleTopShow: "articleTop",
                 title: "title",
+                article: "article",
             }),
              ...mapState('home', {
                 isMobile: "isMobile",
             })
         },
-        created: function() {},
         mounted: function() {
             //设置markdown属性
             let renderer = new marked.Renderer();
@@ -102,12 +101,8 @@
                 smartLists: true,
                 smartypants: false
             });
-            this.$get('/home/article/' + this.$route.params.id).then(res => {
-                this.$check(res.data, true).then(res => {
-                    this.item = res.data
-                    this.execDataAnalyze()
-                }).catch(res => {})
-            })
+            //解析数据
+            this.execDataAnalyze()
             //启动监听
             window.addEventListener("scroll", this.handleScroll);
         },
@@ -120,8 +115,8 @@
             ...mapActions('article', {}),
             //数据分析
             execDataAnalyze() {
-                this.setTitle(this.item.title)
-                let content = marked(this.item.content);
+                this.setTitle(this.article.title)
+                let content = marked(this.article.content);
                 this.content = content.replace("[TOC]", "")
                 this.toc = this.toHTML();
                 //TOC Vue对象
@@ -292,6 +287,7 @@
         position: relative;
         z-index: 2;
     }
+
     .article-toc {
         padding: 0px!important;
     }
@@ -299,6 +295,7 @@
         padding-left: 5px;
         margin: 0;
         list-style-type: square;
+
     }
     .article-toc ul li a {
         display: block;
@@ -306,6 +303,7 @@
         color: #000;
         text-decoration: none;
         z-index: 2;
+
     }
     #hightline-div {
         z-index: 1;
@@ -328,6 +326,9 @@
 </style>
 
 <style>
+     #article-mulu a {
+        cursor:pointer!important;
+    }
     .set_color a {
         color: #409EFF!important;
     }
