@@ -30,7 +30,7 @@
                 this.getArticle()
             }
         },
-        created() {
+        mounted() {
             //获取数据
             this.getLabels()
         },

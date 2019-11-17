@@ -71,9 +71,9 @@
                 setSize:"setSize",
             })
         },
-        created() {
-            //获取数据
-            this.getArticle()
+        mounted() {
+            // //获取数据
+            // this.getArticle()
         },
         computed: {
             ...mapState('home',{

@@ -21,7 +21,7 @@
                 total: 1,
             };
         },
-        created() {
+        mounted() {
             this.getData()
         },
         methods: {

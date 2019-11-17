@@ -55,34 +55,8 @@
             })
         },
         mounted(){
-            this.isPc()
         },
         methods:{
-            isPc(){
-                var userAgentInfo = navigator.userAgent;
-                var Agents = ["Android", "iPhone",
-                            "SymbianOS", "Windows Phone",
-                            "iPad", "iPod"];
-                var flag = true;
-                for (var v = 0; v < Agents.length; v++) {
-                    if (userAgentInfo.indexOf(Agents[v]) > 0) {
-                        flag = false;
-                        break;
-                    }
-                }
-                this.$store.state.home.isMobile = !flag
-            }
-        },
-        metaInfo: {
-            title: 'Avalon博客',
-            meta: [{
-                name: 'java,python',
-                content: 'java,python代码'
-            }],
-            link: [{
-                rel: 'github',
-                href: 'https://github.com/AVAL-NIX'
-            }]
         }
     }
 </script>
