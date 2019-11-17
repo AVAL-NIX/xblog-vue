@@ -21,7 +21,7 @@ after_script:
   - chmod 600 ./deploy_key
   - echo -e "Host $SERVER_IP_ADDRESS\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
   - ssh-add ./deploy_key
-  - ssh -i ./deploy_key root@$SERVER_IP_ADDRESS 'cd /home/vue/xblog-vue &&  git fetch --all  &&  git reset --hard origin/gh-pages'
+  - ssh -i ./deploy_key root@$SERVER_IP_ADDRESS 'cd /home/vue/xblog-vue &&  git fetch --all  &&  git reset --hard origin/gh-pages && pm2 restart xblog-vue'
 env:
   global:
     - GH_REF=github.com:AVAL-NIX/xblog-vue.git

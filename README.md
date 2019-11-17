@@ -39,6 +39,6 @@ curl localhost:80
 输出
 
 ```
-# <!DOCTYPE html><html lang=en>...</html>
+    //"tttttttt": "pm2 start npm --watch --name xblog-vue -- run start"
 ```
 
