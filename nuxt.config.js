@@ -5,21 +5,18 @@ module.exports = {
    ** Headers of the page
    */
   head: {
-      title:'fdsaf堪无可奈何花落去 ',
     meta: [{
-        charset: 'utf-8'
-      },
-      {
-        name: 'viewport',
-        content: 'width=device-width, initial-scale=1'
-      },
-      {
-        hid: 'description',
-        name: 'description',
-        content: 'java,ptyon,avalon'
-      }
-
-    ],
+      charset: 'utf-8'
+    }, {
+      hid: 'description',
+      name: 'description',
+      content: 'java,python,avalon,遥远的理想乡,AVALON的博客'
+    }, {
+      hid: 'keywords',
+      name: 'keywords',
+      content: 'java,python,avalon,遥远的理想乡,AVALON的博客'
+    }],
+    title: "AVALON的博客 - 遥远的理想乡",
     link: [{
       rel: 'icon',
       type: 'image/x-icon',
