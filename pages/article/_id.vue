@@ -1,25 +1,25 @@
 <template>
     <div>
-        <div v-if="!isMobile" >
-        <el-container>
-            <transition name="fade">
-                <Top v-show="topShow"></Top>
-            </transition>
-            <transition name="fade">
-                <ArticleTop v-show="articleTopShow"></ArticleTop>
-            </transition>
-            <el-main>
-                <ArticleDetail></ArticleDetail>
-            </el-main>
-            <el-footer>
-                <Backtop></Backtop>
-            </el-footer>
-        </el-container>
+        <div v-if="!isMobile">
+            <el-container>
+                <transition name="fade">
+                    <Top v-show="topShow"></Top>
+                </transition>
+                <transition name="fade">
+                    <ArticleTop v-show="!topShow"></ArticleTop>
+                </transition>
+                <el-main>
+                    <ArticleDetail></ArticleDetail>
+                </el-main>
+                <el-footer>
+                    <Backtop></Backtop>
+                </el-footer>
+            </el-container>
         </div>
         <div v-else>
-            <ArticleTop ></ArticleTop>
-            <el-container >
-                    <ArticleDetail></ArticleDetail>
+            <ArticleTop></ArticleTop>
+            <el-container>
+                <ArticleDetail></ArticleDetail>
             </el-container>
         </div>
     </div>
@@ -28,7 +28,7 @@
 <script>
     import ArticleDetail from '@/components/ArticleDetail'
     import Top from '@/components/Top'
-    import TopMobile from '@/components/mobile/TopMobile'
+    import TopMobile from '@/components/TopMobile'
     import ArticleTop from '@/components/ArticleTop'
     import Backtop from '@/components/Backtop'
     import {
@@ -38,15 +38,25 @@
     } from 'vuex'
     export default {
         name: 'ArticleIndex',
-          head() {
+        head() {
             return {
-                title: "主页",
-                meta: [{
+                title: this.article.title + " - AVALON??? - ??????",
+                meta: [  { charset: 'utf-8' },{
                     hid: 'description',
                     name: 'description',
-                    content: 'java,python,avalon'
+                    content: this.article.title + "," + this.article.labels
+                }, {
+                    hid: 'keywords',
+                    name: 'keywords',
+                    content: this.article.title + "," + this.article.labels
                 }]
             }
+        },
+        async asyncData({
+            store,
+            params
+        }) {
+            await store.dispatch('article/getArticle', params.id)
         },
         components: {
             ArticleDetail,
@@ -55,18 +65,16 @@
             TopMobile,
             ArticleTop
         },
-        data(){
-            return{
-
-            }
+        data() {
+            return {}
         },
         computed: {
-            ...mapState({
-                topShow: state => state.article.top,
-                articleTopShow: state => state.article.articleTop,
-            }),
             ...mapState('home', {
                 isMobile: "isMobile",
+            }),
+            ...mapState('article', {
+                article: 'article',
+                topShow: 'top',
             })
         },
     }

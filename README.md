@@ -14,31 +14,26 @@ npm run dev
 
 ## 服务器上运行
 
-前置条件
 
-- 安装dokcer
+- 安装node
 
-构建xblog-vue镜像
+略
 
-```
-docker build . -t xblog-vue
-```
+- 安装npm
 
-运行xblog-vue镜像
+略
 
-```
-docker run -d -p 443:443 xblog-vue
-```
-
-检测是否运行
+- 安装依赖
 
 ```
-curl localhost:80
+npm install
 ```
 
-输出
+- 安装pm2
 
 ```
-# <!DOCTYPE html><html lang=en>...</html>
+npm install -g pm2
+pm2 start npm --watch --name xblog-vue -- run start
 ```
 
+> pm2其他命令自己百度

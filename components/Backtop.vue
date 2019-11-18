@@ -36,7 +36,7 @@
         name: 'Backtop',
         methods:{
             toBaidu(){
-                this.$router.push("https://www.baidu.com")
+               // this.$router.push("https://www.baidu.com")
             }
         }
     }

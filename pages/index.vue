@@ -17,17 +17,29 @@
         mapState,
         mapMutations
     } from 'vuex'
+    import axios from 'axios'
     export default {
+        async asyncData({
+            store,
+            params
+        }) {
+            await store.dispatch('home/getArticle')
+            await store.dispatch('timeline/getTimeLine')
+        },
         layout: 'blog',
         name: 'Index',
         head() {
             return {
-                title: "主页",
-                meta: [{
+                meta: [  { charset: 'utf-8' }, {
                     hid: 'description',
                     name: 'description',
-                    content: 'java,python,avalon'
-                }]
+                    content: 'java,python,avalon,??????,AVALON???'
+                }, {
+                        hid: 'keywords',
+                    name: 'keywords',
+                    content: 'java,python,avalon,??????,AVALON???'
+                }],
+                title: "AVALON??? - ??????",
             }
         },
         data() {

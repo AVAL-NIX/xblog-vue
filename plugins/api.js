@@ -14,6 +14,12 @@ Vue.prototype.$params = (params) => {
   return '?' + str
 }
 
+if (process.server) {
+    axios.defaults.baseURL = `http://127.0.0.1:8099`
+}else{
+    axios.defaults.baseURL = `/api`
+}
+
 // 请求超时时间
 axios.defaults.timeout = 10000;
 
@@ -85,7 +91,11 @@ axios.interceptors.response.use(data => {
   return Promise.reject(err);
 })
 
-let base = '/api'
+let base = ''
+
+base+= ''
+
+
 
 /**
  * POST 请求

@@ -6,18 +6,22 @@ import {
 
 const state = {
   top: true,
-  articleTop: false,
   title: '',
   artileObj: {},
+  article: null
 }
 // getters
 const getters = {
-  getToc: state => state.toc,
-  getArticleToc: state => state.articleTop
 }
 // actions
 const actions = {
-
+    async getArticle({state}, id){
+        await get('/home/article/' + id).then(res => {
+            check(res.data, true).then(res => {
+                state.article = res.data
+            })
+        })
+    }
 }
 // mutations
 const mutations = {

@@ -56,7 +56,6 @@
             handleSizeChange(val) {
                 this.setSize(val)
                 this.getArticle()
-
             },
             handleCurrentChange(val) {
                 this.setPage(val)
@@ -70,9 +69,7 @@
                 setSize:"setSize",
             })
         },
-        created() {
-            //获取数据
-            this.getArticle()
+        mounted() {
         },
         computed: {
             ...mapState('home',{

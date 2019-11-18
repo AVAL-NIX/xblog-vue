@@ -5,10 +5,7 @@ module.exports = {
    ** Headers of the page
    */
   head: {
-    title: '程序员理想乡',
-    meta: [{
-        charset: 'utf-8'
-      },
+    meta: [ { charset: 'utf-8' },
       {
         name: 'viewport',
         content: 'width=device-width, initial-scale=1'
@@ -26,9 +23,8 @@ module.exports = {
       href: '/favicon.ico'
     }],
     script: [{
-        src: 'https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js'
-      }
-    ],
+      src: 'https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js'
+    }],
   },
   /*
    ** Customize the progress-bar color
@@ -49,7 +45,8 @@ module.exports = {
       src: '~/plugins/element-ui.js'
     },
     {
-      src: '~/plugins/api.js'
+      src: '~/plugins/api.js',
+      ssr: true
     }
   ],
   /*
@@ -60,6 +57,7 @@ module.exports = {
    ** Nuxt.js modules
    */
   modules: [
+    '@nuxtjs/axios',
     '@nuxtjs/proxy'
   ],
   /*
@@ -67,6 +65,7 @@ module.exports = {
    */
   build: {
     transpile: [/^element-ui/],
+    vendor: ['axios'],
     /*
      ** You can extend webpack config here
      */
@@ -82,6 +81,7 @@ module.exports = {
   proxy: [
     ['/api', {
       target: 'http://127.0.0.1:8099',
+      changeOrigin: false,
       pathRewrite: {
         '^/api': '' //路径重写
       }

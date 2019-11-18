@@ -25,8 +25,8 @@ const state = {
   }
   // actions
   const actions = {
-      getTitles({state}){
-        get('/home/article/titles').then(function(res){
+    async getTitles({state}){
+        await get('/home/article/titles').then(function(res){
             check(res.data, true).then(function(res) {
                 if(res.data){
                     state.titles = []
@@ -36,15 +36,11 @@ const state = {
                          })
                     })
                 }
-            }).catch(res=>{
-
             })
-        }).catch(res=>{
-
         })
       },
-      getArticle({state}){
-        get("/home/article", {
+      async getArticle({state}){
+        await get("/home/article", {
             page: state.page,
             size: state.size,
             title: state.queryTitle,
@@ -53,21 +49,16 @@ const state = {
             check(res.data, true).then(res => {
                 state.articleList = res.data.records
                 state.total = res.data.total
-            }).catch(res=>{
             })
-        }).catch(res=>{
-
         })
       },
-      getLabels({state}){
-        get("/home/article/labels").then(res => {
+      async getLabels({state}){
+        await get("/home/article/labels").then(res => {
             check(res.data, true).then(res => {
                 state.labelsList = res.data
-            }).catch(res => {})
-        }).catch(res=>{
-
+            })
         })
-      }
+      },
 
   }
   // mutations

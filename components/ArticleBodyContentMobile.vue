@@ -1,6 +1,6 @@
 <template>
-    <div class="ArticleBodyContentMobile" >
-        <el-col :span="24" >
+    <div class="ArticleBodyContentMobile">
+        <el-col :span="24">
             <el-row :gutter="0">
                 <el-col :span="24">
                     <el-card shadow="hover" style="margin:5px;" v-for="(i,index) in list" :key="index">
@@ -56,27 +56,23 @@
             handleSizeChange(val) {
                 this.setSize(val)
                 this.getArticle()
-
             },
             handleCurrentChange(val) {
                 this.setPage(val)
                 this.getArticle()
             },
-            ...mapActions('home',{
+            ...mapActions('home', {
                 getArticle: "getArticle",
-
             }),
-            ...mapMutations('home',{
-                 setPage:"setPage",
-                setSize:"setSize",
+            ...mapMutations('home', {
+                setPage: "setPage",
+                setSize: "setSize",
             })
         },
-        created() {
-            //获取数据
-            this.getArticle()
+        mounted() {
         },
         computed: {
-            ...mapState('home',{
+            ...mapState('home', {
                 page: "page",
                 size: "size",
                 total: "total",
@@ -84,8 +80,7 @@
             })
         },
         data() {
-            return {
-            };
+            return {};
         },
     }
 </script>
