@@ -1,4 +1,3 @@
-
 // const webpack = require('webpack')
 module.exports = {
   mode: 'universal',
@@ -6,7 +5,7 @@ module.exports = {
    ** Headers of the page
    */
   head: {
-    title: process.env.npm_package_name || '',
+    title: '程序员理想乡',
     meta: [{
         charset: 'utf-8'
       },
@@ -25,31 +24,11 @@ module.exports = {
       rel: 'icon',
       type: 'image/x-icon',
       href: '/favicon.ico'
-    }
-    // , {
-    //   rel: 'stylesheet',
-    //   href: 'https://cdn.bootcss.com/element-ui/2.12.0/theme-chalk/index.css'
-    // }
-
-],
+    }],
     script: [{
-      src: 'https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js'
-    }
-    // , {
-    //   src: 'https://cdn.bootcss.com/vue/2.6.10/vue.min.js'
-    // }, {
-    //   src: 'https://cdn.bootcss.com/vue-router/3.0.1/vue-router.min.js'
-    // }, {
-    //   src: 'https://cdn.bootcss.com/vuex/3.1.1/vuex.min.js'
-    // }, {
-    //   src: 'https://cdn.bootcss.com/axios/0.19.0/axios.min.js'
-    // }, {
-    //   src: 'https://cdn.bootcss.com/element-ui/2.12.0/index.js'
-    // }, {
-    //   src: 'https://cdn.bootcss.com/marked/0.7.0/marked.min.js'
-    // }
-
-],
+        src: 'https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js'
+      }
+    ],
   },
   /*
    ** Customize the progress-bar color

@@ -4,13 +4,12 @@
             <el-col :span="12  " :offset="6">
                 <div>
                     <el-link>360</el-link>
-                    <el-link type="primary">baidu</el-link>
-                    <el-link type="success">alibaba</el-link>
-                    <el-link type="warning">tengxun</el-link>
+                    <el-link type="primary"><a href="https://www.baidu.com" target="_blank">baidu</a></el-link>
+                    <el-link @click="toBaidu" type="success">alibaba</el-link>
+                    <el-link type="warning"> tengxun</el-link>
                     <el-link type="danger">google</el-link>
                     <el-link type="info">youdao</el-link>
                 </div>
-
             </el-col>
         </el-row>
 
@@ -34,7 +33,12 @@
 
 <script>
     export default {
-        name: 'Backtop'
+        name: 'Backtop',
+        methods:{
+            toBaidu(){
+                this.$router.push("https://www.baidu.com")
+            }
+        }
     }
 </script>
 

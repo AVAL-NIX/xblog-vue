@@ -1,9 +1,9 @@
 <template>
     <div class="index">
         <el-main>
-                 <ArticleBodyContent ></ArticleBodyContent>
-                <ArticleBodyRight></ArticleBodyRight>
-                <Drawer></Drawer>
+            <ArticleBodyContent></ArticleBodyContent>
+            <ArticleBodyRight></ArticleBodyRight>
+            <Drawer></Drawer>
         </el-main>
     </div>
 </template>
@@ -20,29 +20,39 @@
     export default {
         layout: 'blog',
         name: 'Index',
-        data(){
-            return{
+        head() {
+            return {
+                title: "主页",
+                meta: [{
+                    hid: 'description',
+                    name: 'description',
+                    content: 'java,python,avalon'
+                }]
             }
+        },
+        data() {
+            return {}
         },
         components: {
             Drawer,
             ArticleBodyContent,
             ArticleBodyRight,
         },
-        computed:{
+        computed: {
             ...mapState('home', {
                 isMobile: "isMobile",
             })
         },
-        mounted(){
+        mounted() {
             this.isPc()
         },
-        methods:{
-            isPc(){
+        methods: {
+            isPc() {
                 var userAgentInfo = navigator.userAgent;
                 var Agents = ["Android", "iPhone",
-                            "SymbianOS", "Windows Phone",
-                            "iPad", "iPod"];
+                    "SymbianOS", "Windows Phone",
+                    "iPad", "iPod"
+                ];
                 var flag = true;
                 for (var v = 0; v < Agents.length; v++) {
                     if (userAgentInfo.indexOf(Agents[v]) > 0) {

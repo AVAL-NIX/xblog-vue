@@ -38,6 +38,16 @@
     } from 'vuex'
     export default {
         name: 'ArticleIndex',
+          head() {
+            return {
+                title: "主页",
+                meta: [{
+                    hid: 'description',
+                    name: 'description',
+                    content: 'java,python,avalon'
+                }]
+            }
+        },
         components: {
             ArticleDetail,
             Top,
