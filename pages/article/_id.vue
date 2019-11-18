@@ -40,7 +40,7 @@
         name: 'ArticleIndex',
         head() {
             return {
-                title: this.article.title + " - AVALON??? - ??????",
+                title: this.article.title + " - AVALON的博客 - 遥远的理想乡",
                 meta: [  { charset: 'utf-8' },{
                     hid: 'description',
                     name: 'description',

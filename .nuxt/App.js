@@ -16,7 +16,7 @@ import _6f6c098b from './layouts/default.vue'
 const layouts = { "_blog": _2d21d098,"_default": _6f6c098b }
 
 export default {
-  head: {"meta":[{"name":"viewport","content":"width=device-width, initial-scale=1"},{"hid":"description","name":"description","content":"java,ptyon,avalon"}],"link":[{"rel":"icon","type":"image\u002Fx-icon","href":"\u002Ffavicon.ico"}],"script":[{"src":"https:\u002F\u002Fcdn.bootcss.com\u002Fjquery\u002F3.4.1\u002Fjquery.min.js"}],"style":[]},
+  head: {"title":"fdsaf堪无可奈何花落去 ","meta":[{"charset":"utf-8"},{"name":"viewport","content":"width=device-width, initial-scale=1"},{"hid":"description","name":"description","content":"java,ptyon,avalon"}],"link":[{"rel":"icon","type":"image\u002Fx-icon","href":"\u002Ffavicon.ico"}],"script":[{"src":"https:\u002F\u002Fcdn.bootcss.com\u002Fjquery\u002F3.4.1\u002Fjquery.min.js"}],"style":[]},
 
   render (h, props) {
     const loadingEl = h('NuxtLoading', { ref: 'loading' })

@@ -3,12 +3,12 @@
         <el-row :gutter="8">
             <el-col :span="12  " :offset="6">
                 <div>
-                    <el-link>360</el-link>
-                    <el-link type="primary"><a href="https://www.baidu.com" target="_blank">baidu</a></el-link>
-                    <el-link @click="toBaidu" type="success">alibaba</el-link>
-                    <el-link type="warning"> tengxun</el-link>
-                    <el-link type="danger">google</el-link>
-                    <el-link type="info">youdao</el-link>
+                    <el-link><a href="https://www.360.cn/" target="_blank">360</a></el-link>
+                    <el-link type="primary"><a href="https://www.baidu.com" target="_blank">百度</a></el-link>
+                    <el-link type="success"><a href="https://cn.aliyun.com/" target="_blank">阿里云</a></el-link>
+                    <el-link type="warning"> <a href="https://www.qq.com/" target="_blank">腾讯</a></el-link>
+                    <el-link type="danger"><a href="https://www.google.com" target="_blank">谷歌</a></el-link>
+                    <el-link type="info"><a href="https://cn.bing.com" target="_blank">必应</a></el-link>
                 </div>
             </el-col>
         </el-row>
@@ -35,9 +35,7 @@
     export default {
         name: 'Backtop',
         methods:{
-            toBaidu(){
-               // this.$router.push("https://www.baidu.com")
-            }
+
         }
     }
 </script>

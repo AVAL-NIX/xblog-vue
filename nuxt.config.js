@@ -5,7 +5,10 @@ module.exports = {
    ** Headers of the page
    */
   head: {
-    meta: [ { charset: 'utf-8' },
+      title:'fdsaf堪无可奈何花落去 ',
+    meta: [{
+        charset: 'utf-8'
+      },
       {
         name: 'viewport',
         content: 'width=device-width, initial-scale=1'

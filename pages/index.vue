@@ -30,16 +30,17 @@
         name: 'Index',
         head() {
             return {
-                meta: [  { charset: 'utf-8' }, {
+                meta: [
+                    { charset: 'utf-8' }, {
                     hid: 'description',
                     name: 'description',
-                    content: 'java,python,avalon,??????,AVALON???'
+                    content: 'java,python,avalon,遥远的理想乡,AVALON的博客'
                 }, {
                         hid: 'keywords',
                     name: 'keywords',
-                    content: 'java,python,avalon,??????,AVALON???'
+                    content: 'java,python,avalon,遥远的理想乡,AVALON的博客'
                 }],
-                title: "AVALON??? - ??????",
+                title: "AVALON的博客 - 遥远的理想乡",
             }
         },
         data() {
