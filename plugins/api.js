@@ -107,15 +107,6 @@ export const post = (url, params) => {
     method: 'post',
     url: `${base}${url}`,
     data: params,
-    // transformRequest: [
-    //   function (data) {
-    //     let ret = ''
-    //     for (let it in data) {
-    //       ret += encodeURIComponent(it) + '=' + encodeURIComponent(data[it]) + '&'
-    //     }
-    //     return ret
-    //   }
-    // ]
   })
 }
 
@@ -143,16 +134,6 @@ export const put = (url, params) => {
     method: 'put',
     url: `${base}${url}`,
     data: params,
-    // `transformRequest` 允许在向服务器发送前，修改请求数据
-    // 只能用在 'PUT', 'POST' 和 'PATCH' 这几个请求方法
-    // 后面数组中的函数必须返回一个字符串，或 ArrayBuffer，或 Stream
-    // transformRequest: [function (data) {
-    //   let ret = ''
-    //   for (let it in data) {
-    //     ret += encodeURIComponent(it) + '=' + encodeURIComponent(data[it]) + '&'
-    //   }
-    //   return ret
-    // }]
   });
 }
 
@@ -177,24 +158,7 @@ export const get = (url, params) => {
   return axios({
     method: 'get',
     url: `${base}${url}`,
-      // `data` 是作为请求主体被发送的数据
-  // 只适用于这些请求方法 'PUT', 'POST', 和 'PATCH'
-  // 在没有设置 `transformRequest` 时，必须是以下类型之一：
-  // - string, plain object, ArrayBuffer, ArrayBufferView, URLSearchParams
-  // - 浏览器专属：FormData, File, Blob
-  // - Node 专属： Stream
     params:params
-
-    //   `transformRequest` 允许在向服务器发送前，修改请求数据
-    // 只能用在 'PUT', 'POST' 和 'PATCH' 这几个请求方法
-    // 后面数组中的函数必须返回一个字符串，或 ArrayBuffer，或 Stream
-    // transformRequest: [function (data) {
-    //   let ret = ''
-    //   for (let it in data) {
-    //     ret += encodeURIComponent(it) + '=' + encodeURIComponent(data[it]) + '&'
-    //   }
-    //   return ret
-    // }]
   });
 }
 
