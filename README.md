@@ -34,6 +34,12 @@ npm install
 ```
 npm install -g pm2
 pm2 start npm --watch --name xblog-vue -- run start
+
 ```
 
 > pm2其他命令自己百度
+
+```
+pm2 stop all
+pm2 restart xblog-vue
+```

@@ -28,7 +28,7 @@
                 color: #1989fa;
             }"
             >
-            UP
+            回到顶部
             </div>
         </el-backtop>
     </div>
