@@ -9,8 +9,9 @@
                     <el-link type="warning"> <a href="https://www.qq.com/" target="_blank">腾讯</a></el-link>
                     <el-link type="danger"><a href="https://www.google.com" target="_blank">谷歌</a></el-link>
                     <el-link type="info"><a href="https://cn.bing.com" target="_blank">必应</a></el-link>
-                    <el-link type="info"><a target="_blank">© 2019-2020 Zhengxin 版权所有</a></el-link>
-                    <el-link type="info"><a href="http://www.beian.miit.gov.cn" target="_blank">粤ICP备18030792号-1</a></el-link>
+                    <br>
+                    <span style="font-weight: 500; font-size: 12px;height:14px;">© 2019-2020 Zhengxin 版权所有</span>
+                    <el-link type="info" ><a href="http://www.beian.miit.gov.cn" target="_blank" style="color:red;">粤ICP备18030792号-1</a></el-link>
                 </div>
             </el-col>
         </el-row>
