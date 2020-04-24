@@ -55,14 +55,14 @@
         methods: {
             handleSizeChange(val) {
                 this.setSize(val)
-                this.getArticle()
+                this.getArticles()
             },
             handleCurrentChange(val) {
                 this.setPage(val)
-                this.getArticle()
+                this.getArticles()
             },
             ...mapActions('home', {
-                getArticle: "getArticle",
+                getArticles: "getArticles",
             }),
             ...mapMutations('home', {
                 setPage: "setPage",

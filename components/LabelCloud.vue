@@ -20,14 +20,14 @@
         methods: {
             ...mapActions('home', {
                 getLabels: 'getLabels',
-                getArticle: 'getArticle'
+                getArticles: 'getArticles'
             }),
             ...mapMutations('home', {
                 changeLabels: 'changeLabels'
             }),
             selectLabel(name) {
                 this.changeLabels(name)
-                this.getArticle()
+                this.getArticles()
             }
         },
         mounted() {

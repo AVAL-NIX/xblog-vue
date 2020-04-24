@@ -24,7 +24,7 @@ module.exports = {
     }],
     script: [{
       src: 'https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js'
-    }],
+    }, ],
   },
   /*
    ** Customize the progress-bar color
@@ -47,7 +47,8 @@ module.exports = {
     {
       src: '~/plugins/api.js',
       ssr: true
-    }
+    },
+
   ],
   /*
    ** Nuxt.js dev-modules
